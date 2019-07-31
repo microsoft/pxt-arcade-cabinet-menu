@@ -1,4 +1,4 @@
-# MakeCode Arcade Cabinet Menu
+# MakeCode Arcade Cabinet Menu [![Build Status](https://travis-ci.org/microsoft/pxt-arcade-cabinet-menu.svg?branch=master)](https://travis-ci.org/microsoft/pxt-arcade-cabinet-menu)
 
 The application that lets you launch multiple games on Rpi0.
 
