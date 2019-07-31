@@ -1,20 +1,46 @@
 let menuelts: string[] = [];
 let cursor = 0;
 let offset = 0;
+let bcount = 0;
 const logo = img`
-    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    . . 4 . . 4 4 4 . . 4 . . . 4 . . . 4 . 4 4 4 . 4 . 4 . 4 4 4 . 4 4 4 . 4 4 4 . 4 4 . . 4 4 4 .
-    . 4 . . . . 4 . . . . 4 . . 4 4 . 4 4 . 4 . 4 . 4 4 . . 4 . . . 4 . . . 4 . 4 . 4 . 4 . 4 . . .
-    . 4 . 4 4 4 4 4 4 4 . 4 . . 4 . 4 . 4 . 4 4 4 . 4 . 4 . 4 4 . . 4 . . . 4 . 4 . 4 . 4 . 4 4 . .
-    . 4 . 4 4 4 4 4 4 4 . 4 . . 4 . . . 4 . 4 . 4 . 4 . 4 . 4 4 4 . 4 4 4 . 4 4 4 . 4 4 . . 4 4 4 .
-    . 4 . 4 4 4 4 4 . 4 . 4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    4 . . 4 4 4 4 4 . . . . 4 . . 4 4 4 . . 4 4 4 4 . . . 4 4 4 . . . 4 4 4 . . 4 4 4 . . 4 4 4 4 .
-    . 4 . 4 4 4 4 4 . 4 . 4 . . 4 . . . 4 . 4 . . . 4 . 4 . . . 4 . 4 . . . 4 . 4 . . 4 . 4 . . . .
-    . 4 . 4 4 4 4 4 4 4 . 4 . . 4 . . . 4 . 4 . . . 4 . 4 . . . . . 4 . . . 4 . 4 . . 4 . 4 . . . .
-    . 4 . 4 4 4 4 4 4 4 . 4 . . 4 4 4 4 4 . 4 4 4 4 . . 4 . . . . . 4 4 4 4 4 . 4 . . 4 . 4 4 4 . .
-    . 4 . . . . . . . . . 4 . . 4 . . . 4 . 4 . . . 4 . 4 . . . 4 . 4 . . . 4 . 4 . . 4 . 4 . . . .
-    . . 4 . . . . . . . 4 . . . 4 . . . 4 . 4 . . . 4 . . 4 4 4 . . 4 . . . 4 . 4 4 4 . . 4 4 4 4 .
+    . . 3 . . . 3 3 3 . . . 3 . . . 1 . . . 1 . 1 1 1 . 1 . 1 . 1 1 1 . 1 1 1 . 1 1 1 . 1 1 . . 1 1 1
+    . 3 . . . . . 3 . . . . . 3 . . 1 1 . 1 1 . 1 . 1 . 1 1 . . 1 . . . 1 . . . 1 . 1 . 1 . 1 . 1 . .
+    . 3 . . 3 3 3 3 3 3 3 . . 3 . . 1 . 1 . 1 . 1 1 1 . 1 . 1 . 1 1 . . 1 . . . 1 . 1 . 1 . 1 . 1 1 .
+    . 3 . . 3 3 3 3 3 3 3 . . 3 . . 1 . . . 1 . 1 . 1 . 1 . 1 . 1 1 1 . 1 1 1 . 1 1 1 . 1 1 . . 1 1 1
+    . 3 . . 3 3 3 3 3 . 3 . . 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    3 . . . 3 3 3 3 3 . . . . . 3 . . 1 1 1 . . 1 1 1 1 . . . 1 1 1 . . . 1 1 1 . . 1 1 1 . . 1 1 1 1
+    . 3 . . 3 3 3 3 3 . 3 . . 3 . . 1 . . . 1 . 1 . . . 1 . 1 . . . 1 . 1 . . . 1 . 1 . . 1 . 1 . . .
+    . 3 . . 3 3 3 3 3 3 3 . . 3 . . 1 . . . 1 . 1 . . . 1 . 1 . . . . . 1 . . . 1 . 1 . . 1 . 1 . . .
+    . 3 . . 3 3 3 3 3 3 3 . . 3 . . 1 1 1 1 1 . 1 1 1 1 . . 1 . . . . . 1 1 1 1 1 . 1 . . 1 . 1 1 1 .
+    . 3 . . . . . . . . . . . 3 . . 1 . . . 1 . 1 . . . 1 . 1 . . . 1 . 1 . . . 1 . 1 . . 1 . 1 . . .
+    . . 3 . . . . . . . . . 3 . . . 1 . . . 1 . 1 . . . 1 . . 1 1 1 . . 1 . . . 1 . 1 1 1 . . 1 1 1 1
 `
+function move(dx: number) {
+    let nc = cursor + dx
+    if (nc < 0) nc = 0
+    else if (nc >= menuelts.length) nc = menuelts.length - 1
+    if (nc - offset < 2) offset = nc - 2
+    if (nc - offset > 5) offset = nc - 5
+    if (offset < 0) offset = 0
+    cursor = nc
+}
+
+function select() {
+    control.runProgram(menuelts[cursor])
+}
+
+function del() {
+    if (bcount++ < 5)
+        return;
+
+    const name = menuelts[cursor];
+    if (game.ask(`delete ${name}`, `are you sure?`)) {
+        //  control.deleteProgram(name);
+        menuelts.removeAt(0);
+        move(0);
+    }
+}
+
 function showMenu() {
     menuelts = control.programList()
     menuelts = menuelts.filter(s => s && s[0] != ".")
@@ -22,19 +48,6 @@ function showMenu() {
     cursor = 0
     offset = 0
 
-    function move(dx: number) {
-        let nc = cursor + dx
-        if (nc < 0) nc = 0
-        else if (nc >= menuelts.length) nc = menuelts.length - 1
-        if (nc - offset < 2) offset = nc - 2
-        if (nc - offset > 5) offset = nc - 5
-        if (offset < 0) offset = 0
-        cursor = nc
-    }
-
-    function select() {
-        control.runProgram(menuelts[cursor])
-    }
 
     controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         move(1)
@@ -55,19 +68,19 @@ function showMenu() {
     })
 
     controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-        select()
+        control.runInBackground(del)
     })
 
     game.onPaint(function () {
-        screen.drawImage(logo, (screen.width >> 1) - (logo.width >> 1), 2)
-        screen.fillRect(0, 100, 160, 20, 12)
-        screen.printCenter("create your game at", 102, 1, image.font5)
-        screen.printCenter("arcade.makecode.com", 112, 1, image.font5)
-        for (let i = 0; i < 7; ++i) {
-            let e = menuelts[i + offset] || ""
+        screen.fillRect(0, 0, 160, 20, 12)
+        //screen.print("more games", 60, 3, 1, image.font5)
+        //screen.print("at makecode.com!", 60, 12, 1, image.font5)
+        screen.drawTransparentImage(logo, 4, 4)
+        for (let i = 0; i < 9; ++i) {
+            let e = menuelts[i + offset] || "";
             e = e.split('_').join(' ')
             e = e.split('-').join(' ')
-            let y = 20 + i * 11
+            let y = 25 + i * 11
             if (i + offset == cursor) {
                 screen.fillRect(0, y - 2, 160, 11, 5)
                 screen.print(e, 10, y, 15)
@@ -88,10 +101,10 @@ const menuBootSequence = new storyboard.BootSequence(done => {
             if (it++ == 30) {
                 lg.vy = -100;
                 lg.ay = 100;
+                lg.vx = -103;
+                lg.ax = 103;
             }
-            if (lg.top <= 2 && done) {
-                lg.vy = -100;
-                lg.ay = 100;
+            if (lg.top <= 4 && done) {
                 done();
                 done = undefined;
             }
@@ -99,7 +112,7 @@ const menuBootSequence = new storyboard.BootSequence(done => {
     }
 
     game.onUpdate(function () {
-        if (at++ == 120 && startAnimation) {
+        if (at++ == 80 && startAnimation) {
             startAnimation();
             startAnimation = undefined;
         }
