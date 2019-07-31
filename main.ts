@@ -31,7 +31,7 @@ function select() {
 }
 
 function del() {
-    if (admin) return;
+    if (!admin) return;
 
     const name = menuelts[cursor];
     if (game.ask(`delete ${name}`, `are you sure?`)) {
