@@ -1,3 +1,4 @@
+let admin = controller.A.isPressed() && controller.B.isPressed();
 let menuelts: string[] = [];
 let cursor = 0;
 let offset = 0;
@@ -30,8 +31,7 @@ function select() {
 }
 
 function del() {
-    if (bcount++ < 3)
-        return;
+    if (admin) return;
 
     const name = menuelts[cursor];
     if (game.ask(`delete ${name}`, `are you sure?`)) {
