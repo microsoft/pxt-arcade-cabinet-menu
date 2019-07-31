@@ -1,7 +1,7 @@
 all: deploy
 
 build:
-	pxt build
+	pxt build --i --hw rpi
 
 deploy:
 	pxt deploy

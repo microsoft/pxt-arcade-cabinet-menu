@@ -11,13 +11,13 @@
     }, {
         "label": "pxt build",
         "type": "shell",
-        "command": "pxt build --local",
+        "command": "pxt build --local --i --hw rpi",
         "group": "build",
         "problemMatcher": [ "$tsc" ]
     }, {
         "label": "pxt install",
         "type": "shell",
-        "command": "pxt install",
+        "command": "pxt install --hw rpi",
         "group": "build",
         "problemMatcher": [ "$tsc" ]
     }, {

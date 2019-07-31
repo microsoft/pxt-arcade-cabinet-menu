@@ -6,7 +6,8 @@
         "device": "*",
         "storyboard": "*",
         "palette": "*",
-        "microsoft-boot-sequence": "github:microsoft/pxt-microsoft-boot-sequence#v0.0.2"
+        "microsoft-boot-sequence": "github:microsoft/pxt-microsoft-boot-sequence#v0.0.2",
+        "hw---rpi": "*"
     },
     "files": [
         "README.md",
