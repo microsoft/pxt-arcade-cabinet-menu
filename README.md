@@ -2,18 +2,21 @@
 
 The application that lets you launch multiple games on Rpi0.
 
+## How to deploy this program
 
-## TODO
-
-- [ ] Add a reference for your blocks here
-- [ ] Add "icon.png" image (300x200) in the root folder
-- [ ] Add "- beta" to the GitHub project description if you are still iterating it.
-- [ ] Turn on your automated build on https://travis-ci.org
-- [ ] Use "pxt bump" to create a tagged release on GitHub
-- [ ] On GitHub, create a new file named LICENSE. Select the MIT License template.
-- [ ] Get your package reviewed and approved https://arcade.makecode.com/extensions/approval
-
-Read more at https://arcade.makecode.com/extensions
+* [ ] install node.js 8.9.4
+* [ ] install and setup PXT command line
+```
+npm install -g pxt
+pxt target arcade
+```
+* [ ] build an [arcade cabinet](https://arcade.makecode.com/hardware/raspberry-pi)
+* [ ] build .uf2 file
+```
+pxt build --i --hw rpi
+```
+* [ ] connect your computer to the Raspberry Pi 0.
+* [ ] copy generated ``arcade-menu.uf2`` file to the ``ARCADE`` drive 
 
 ## Supported targets
 
