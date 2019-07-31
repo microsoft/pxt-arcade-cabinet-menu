@@ -1,0 +1,19 @@
+{
+    "name": ".menu",
+    "version": "0.0.0",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "storyboard": "*",
+        "palette": "*",
+        "microsoft-boot-sequence": "github:microsoft/pxt-microsoft-boot-sequence#v0.0.2"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false
+}
