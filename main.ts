@@ -30,12 +30,12 @@ function select() {
 }
 
 function del() {
-    if (bcount++ < 5)
+    if (bcount++ < 3)
         return;
 
     const name = menuelts[cursor];
     if (game.ask(`delete ${name}`, `are you sure?`)) {
-        //  control.deleteProgram(name);
+        control.deleteProgram(name);
         menuelts.removeAt(0);
         move(0);
     }
@@ -73,8 +73,6 @@ function showMenu() {
 
     game.onPaint(function () {
         screen.fillRect(0, 0, 160, 20, 12)
-        //screen.print("more games", 60, 3, 1, image.font5)
-        //screen.print("at makecode.com!", 60, 12, 1, image.font5)
         screen.drawTransparentImage(logo, 4, 4)
         for (let i = 0; i < 9; ++i) {
             let e = menuelts[i + offset] || "";
