@@ -90,31 +90,27 @@ function showMenu() {
 }
 
 const menuBootSequence = new storyboard.BootSequence(done => {
-    let lg = sprites.create(logo);
-    let at = 0;
-    let it = 0;
-
-    let startAnimation = function () {
-        game.onUpdate(function () {
-            if (it++ == 30) {
-                lg.vy = -100;
-                lg.ay = 100;
-                lg.vx = -103;
-                lg.ax = 103;
-            }
-            if (lg.top <= 4 && done) {
-                done();
-                done = undefined;
-            }
-        })
-    }
+    let phase = 0
+    let lg = swarm.swarmInSprite(logo, 100, 0.5, () => {
+        phase = 1
+    });
 
     game.onUpdate(function () {
-        if (at++ == 80 && startAnimation) {
-            startAnimation();
-            startAnimation = undefined;
+        if (!phase)
+            return
+        if (phase++ == 10) {
+            phase = 20
+            lg.vy = -100;
+            lg.ay = 100;
+            lg.vx = -103;
+            lg.ax = 103;
+        }
+        if (lg.top <= 4 && done) {
+            done();
+            done = undefined;
         }
     })
+
 }, 0);
 
 storyboard.microsoftBootSequence.register()
