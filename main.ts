@@ -1,4 +1,4 @@
-let admin = controller.A.isPressed() && controller.B.isPressed();
+let admin = false;
 let menuelts: string[] = [];
 let cursor = 0;
 let offset = 0;
@@ -112,6 +112,28 @@ const menuBootSequence = new storyboard.BootSequence(done => {
     })
 
 }, 0);
+
+scene.systemMenu.addEntry(
+    () => !admin ? "SHOW ADMIN MODE" : "HIDE ADMIN MODE",
+    () => admin = !admin
+    , img`
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . c c c c c c c . . . . .
+        . . . c c . . . . . c c c . . .
+        . . c c . . . . . . . . c c . .
+        . c c . . c c c c c . . . c . .
+        . c c c c c c c c c c c c c c .
+        . . c . c . c . c . c . c . . .
+        . . c . c . c . c . c . c . . .
+        . . c . c . c . c . c . c . . .
+        . . c . c . c . c . c . c . . .
+        . . c . c . c . . . c . c . . .
+        . . c . . . c . . . c . c . . .
+        . . c . . . . . . . . . c . . .
+        . . c c c c c c c c c c c . . .
+        . . . . . . . . . . . . . . . .
+    `)
 
 storyboard.microsoftBootSequence.register()
 menuBootSequence.register();
