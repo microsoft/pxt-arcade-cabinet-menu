@@ -6,8 +6,8 @@ The application that lets you launch multiple games on Rpi0.
 
 * open https://arcade.makecode.com/beta
 * import https://github.com/microsoft/pxt-arcade-cabinet-menu
-* download for linux
-* drag and drop into the ARCADE drive on the Pi0
+* download for Pi0
+* drag and drop into the ARCADE drive on the Pi0. it will replace the existing menu.
 
 ## How to build locally
 
