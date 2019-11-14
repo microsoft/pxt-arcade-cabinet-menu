@@ -2,7 +2,14 @@
 
 The application that lets you launch multiple games on Rpi0.
 
-## How to deploy this program
+## How to build this menu into the Pi0
+
+* open https://arcade.makecode.com/beta
+* import https://github.com/microsoft/pxt-arcade-cabinet-menu
+* download for linux
+* drag and drop into the ARCADE drive on the Pi0
+
+## How to build locally
 
 * [ ] install node.js 8.9.4
 * [ ] install and setup PXT command line
