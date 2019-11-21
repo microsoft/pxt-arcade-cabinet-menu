@@ -12,7 +12,8 @@
     "files": [
         "README.md",
         "main.ts",
-        "swarm.ts"
+        "swarm.ts",
+        "rpi-config.ts"
     ],
     "testFiles": [
         "test.ts"
