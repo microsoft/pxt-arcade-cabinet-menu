@@ -5,6 +5,9 @@ function gameMenu() {
     let cursor = 0;
     let offset = 0;
     let bcount = 0;
+    // 5 minute idle time, start a random game
+    const DEMO_IDLE_TIME = 5 * 60 * 1000;
+    let lastTick = 0;
     const logo = img`
         . . 3 . . . 3 3 3 . . . 3 . . . 1 . . . 1 . 1 1 1 . 1 . 1 . 1 1 1 . 1 1 1 . 1 1 1 . 1 1 . . 1 1 1
         . 3 . . . . . 3 . . . . . 3 . . 1 1 . 1 1 . 1 . 1 . 1 1 . . 1 . . . 1 . . . 1 . 1 . 1 . 1 . 1 . .
@@ -18,7 +21,9 @@ function gameMenu() {
         . 3 . . . . . . . . . . . 3 . . 1 . . . 1 . 1 . . . 1 . 1 . . . 1 . 1 . . . 1 . 1 . . 1 . 1 . . .
         . . 3 . . . . . . . . . 3 . . . 1 . . . 1 . 1 . . . 1 . . 1 1 1 . . 1 . . . 1 . 1 1 1 . . 1 1 1 1
     `
+    const tick = () => { lastTick = control.millis() }
     const move = (dx: number) => {
+        tick()
         let nc = cursor + dx
         if (nc < 0) nc = 0
         else if (nc >= menuelts.length) nc = menuelts.length - 1
@@ -30,6 +35,7 @@ function gameMenu() {
 
     const RUN_PREFIX = "run.";
     const select = ()  => {
+        tick()
         // keep track of the latest run program to reorganize the menu
         const app = menuelts[cursor]
         const allKey = RUN_PREFIX + ".all"
@@ -37,12 +43,12 @@ function gameMenu() {
         settings.writeNumber(RUN_PREFIX + app, counter)
         settings.writeNumber(allKey, counter)
 
-        console.log(`select ${app} ${counter}`)
         // launch program
         control.runProgram(app)
     }
 
     const del = () => {
+        tick()
         if (!admin) return;
 
         const name = menuelts[cursor];
@@ -55,6 +61,7 @@ function gameMenu() {
     }
 
     function showMenu() {
+        tick()
         menuelts = control.programList()
         menuelts = menuelts.filter(s => s && s[0] != ".")
         // sort by latest usage
@@ -145,6 +152,14 @@ function gameMenu() {
         })
 
     }, 0);
+
+    setInterval(function () {
+        if (control.millis() - lastTick > DEMO_IDLE_TIME) {
+            // nothing has happened for a while
+            // start a random game
+            select();
+        }
+    }, DEMO_IDLE_TIME >> 2)
 
     scene.systemMenu.addEntry(
         () => "CONFIGURE",
