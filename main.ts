@@ -28,8 +28,17 @@ function gameMenu() {
         cursor = nc
     }
 
+    const RUN_PREFIX = "run.";
     const select = ()  => {
-        control.runProgram(menuelts[cursor])
+        // keep track of the latest run program to reorganize the menu
+        const app = menuelts[cursor]
+        const counter = (settings.readNumber("run.all") || 0) + 1;
+        settings.writeNumber(RUN_PREFIX + app, counter)
+        settings.writeNumber(RUN_PREFIX + ".all", counter)
+
+        console.log(`select ${app} ${counter}`)
+        // launch program
+        control.runProgram(app)
     }
 
     const del = () => {
@@ -38,6 +47,7 @@ function gameMenu() {
         const name = menuelts[cursor];
         if (game.ask(`delete ${name}`, `are you sure?`)) {
             control.deleteProgram(name);
+            settings.remove(RUN_PREFIX + name)
             menuelts.removeAt(0);
             move(0);
         }
@@ -46,6 +56,8 @@ function gameMenu() {
     function showMenu() {
         menuelts = control.programList()
         menuelts = menuelts.filter(s => s && s[0] != ".")
+        // sort by latest usage
+        menuelts.sort((l, r) => (settings.readNumber(RUN_PREFIX + r) || 0) - (settings.readNumber(RUN_PREFIX + l) || 0));
 
         cursor = 0
         offset = 0
