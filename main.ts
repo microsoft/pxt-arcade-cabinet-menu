@@ -32,9 +32,10 @@ function gameMenu() {
     const select = ()  => {
         // keep track of the latest run program to reorganize the menu
         const app = menuelts[cursor]
-        const counter = (settings.readNumber("run.all") || 0) + 1;
+        const allKey = RUN_PREFIX + ".all"
+        const counter = (settings.readNumber(allKey) || 0) + 1;
         settings.writeNumber(RUN_PREFIX + app, counter)
-        settings.writeNumber(RUN_PREFIX + ".all", counter)
+        settings.writeNumber(allKey, counter)
 
         console.log(`select ${app} ${counter}`)
         // launch program
@@ -173,22 +174,20 @@ function gameMenu() {
         () => !admin ? "SHOW ADMIN MODE" : "HIDE ADMIN MODE",
         () => admin = !admin
         , img`
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . c c c c c c c . . . . .
-            . . . c c . . . . . c c c . . .
-            . . c c . . . . . . . . c c . .
-            . c c . . c c c c c . . . c . .
-            . c c c c c c c c c c c c c c .
-            . . c . c . c . c . c . c . . .
-            . . c . c . c . c . c . c . . .
-            . . c . c . c . c . c . c . . .
-            . . c . c . c . c . c . c . . .
-            . . c . c . c . . . c . c . . .
-            . . c . . . c . . . c . c . . .
-            . . c . . . . . . . . . c . . .
-            . . c c c c c c c c c c c . . .
-            . . . . . . . . . . . . . . . .
+            . . 4 4 4 . . . . 4 4 4 . . . .
+            . 4 5 5 5 e . . e 5 5 5 4 . . .
+            4 5 5 5 5 5 e e 5 5 5 5 5 4 . .
+            4 5 5 4 4 5 5 5 5 4 4 5 5 4 . .
+            e 5 4 4 5 5 5 5 5 5 4 4 5 e . .
+            . e e 5 5 5 5 5 5 5 5 e e . . .
+            . . e 5 f 5 5 5 5 f 5 e . . . .
+            . . f 5 5 5 4 4 5 5 5 f . . f f
+            . . f 4 5 5 f f 5 5 6 f . f 5 f
+            . . . f 6 6 6 6 6 6 4 4 f 5 5 f
+            . . . f 4 5 5 5 5 5 5 4 4 5 f .
+            . . . f 5 5 5 5 5 4 5 5 f f . .
+            . . . f 5 f f f 5 f f 5 f . . .
+            . . . f f . . f f . . f f . . .
         `)
 
 
