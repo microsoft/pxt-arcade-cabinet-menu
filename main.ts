@@ -57,6 +57,12 @@ function gameMenu() {
         controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
             move(1)
         })
+        controller.player2.down.onEvent(ControllerButtonEvent.Pressed, function () {
+            move(1)
+        })
+        controller.player2.down.onEvent(ControllerButtonEvent.Repeated, function () {
+            move(1)
+        })
 
         controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             move(-1)
@@ -64,12 +70,23 @@ function gameMenu() {
         controller.up.onEvent(ControllerButtonEvent.Repeated, function () {
             move(-1)
         })
+        controller.player2.up.onEvent(ControllerButtonEvent.Pressed, function () {
+            move(-1)
+        })
+        controller.player2.up.onEvent(ControllerButtonEvent.Repeated, function () {
+            move(-1)
+        })
 
         controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             select()
         })
-
         controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+            control.runInBackground(del)
+        })
+        controller.player2.A.onEvent(ControllerButtonEvent.Pressed, function () {
+            select()
+        })
+        controller.player2.B.onEvent(ControllerButtonEvent.Pressed, function () {
             control.runInBackground(del)
         })
 
@@ -117,6 +134,30 @@ function gameMenu() {
     }, 0);
 
     scene.systemMenu.addEntry(
+        () => "CONFIGURE",
+        () => {
+            scene.systemMenu.closeMenu();
+            game.pushScene()
+            rpiConfig()
+        }, img`
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . b 5 5 b . . .
+            . . . . . . b b b b b b . . . .
+            . . . . . b b 5 5 5 5 5 b . . .
+            . b b b b b 5 5 5 5 5 5 5 b . .
+            . b d 5 b 5 5 5 5 5 5 5 5 b . .
+            . . b 5 5 b 5 d 1 f 5 d 4 f . .
+            . . b d 5 5 b 1 f f 5 4 4 c . .
+            b b d b 5 5 5 d f b 4 4 4 4 b .
+            b d d c d 5 5 b 5 4 4 4 4 4 4 b
+            c d d d c c b 5 5 5 5 5 5 5 b .
+            c b d d d d d 5 5 5 5 5 5 5 b .
+            . c d d d d d d 5 5 5 5 5 d b .
+            . . c b d d d d d 5 5 5 b b . .
+            . . . c c c c c c c c b b . . .
+        `)
+    scene.systemMenu.addEntry(
         () => !admin ? "SHOW ADMIN MODE" : "HIDE ADMIN MODE",
         () => admin = !admin
         , img`
@@ -137,6 +178,7 @@ function gameMenu() {
             . . c c c c c c c c c c c . . .
             . . . . . . . . . . . . . . . .
         `)
+
 
     storyboard.microsoftBootSequence.register()
     menuBootSequence.register();
