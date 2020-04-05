@@ -7,11 +7,11 @@
         "storyboard": "*",
         "palette": "*",
         "microsoft-boot-sequence": "github:microsoft/pxt-microsoft-boot-sequence#v0.0.5",
-        "hw---rpi": "*"
+        "hw---rpi": "*",
+        "arcade-swarm-animation": "github:microsoft/arcade-swarm-animation#v0.0.1"
     },
     "files": [
         "README.md",
-        "swarm.ts",
         "rpi-config.ts",
         "menu.ts"
     ],
