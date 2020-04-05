@@ -6,14 +6,14 @@
         "device": "*",
         "storyboard": "*",
         "palette": "*",
-        "microsoft-boot-sequence": "github:microsoft/pxt-microsoft-boot-sequence#v0.0.4",
+        "microsoft-boot-sequence": "github:microsoft/pxt-microsoft-boot-sequence#v0.0.5",
         "hw---rpi": "*"
     },
     "files": [
         "README.md",
-        "main.ts",
         "swarm.ts",
-        "rpi-config.ts"
+        "rpi-config.ts",
+        "menu.ts"
     ],
     "testFiles": [
         "test.ts"
