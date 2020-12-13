@@ -2,7 +2,7 @@
 ---
 # MakeCode Arcade Cabinet Menu [![Build Status](https://travis-ci.org/microsoft/pxt-arcade-cabinet-menu.svg?branch=master)](https://travis-ci.org/microsoft/pxt-arcade-cabinet-menu)
 
-The application that lets you launch multiple games on Rpi0.
+The application that lets you launch multiple games on Raspberry Pi Zero.
 
 ## How to build this menu into the Pi0
 
@@ -26,11 +26,6 @@ pxt build --i --hw rpi
 ```
 - [ ] connect your computer to the Raspberry Pi 0.
 - [ ] copy generated ``arcade-menu.uf2`` file to the ``ARCADE`` drive 
-
-## Supported targets
-
-* for PXT/arcade
-(The metadata above is needed for package search.)
 
 # Microsoft Open Source Code of Conduct
 
