@@ -144,7 +144,7 @@ function gameMenu() {
                 lg.vx = -103;
                 lg.ax = 103;
             }
-            if (lg.top <= 4 && done) {
+            if (lg.top <= 6 && done) {
                 done();
                 done = undefined;
             }
